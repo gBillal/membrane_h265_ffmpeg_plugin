@@ -2,7 +2,7 @@ defmodule Membrane.Template.Mixfile do
   use Mix.Project
 
   @version "0.1.0"
-  @github_url "https://github.com/membraneframework/membrane_template_plugin"
+  @github_url "https://github.com/gBillal/membrane_h265_ffmpeg_plugin"
 
   def project do
     [
@@ -15,11 +15,11 @@ defmodule Membrane.Template.Mixfile do
       dialyzer: dialyzer(),
 
       # hex
-      description: "Template Plugin for Membrane Multimedia Framework",
+      description: "Membrane H265 encoder and decoder based on FFmpeg",
       package: package(),
 
       # docs
-      name: "Membrane Template plugin",
+      name: "Membrane H265 FFmpeg plugin",
       source_url: @github_url,
       docs: docs()
     ]
@@ -36,7 +36,8 @@ defmodule Membrane.Template.Mixfile do
 
   defp deps do
     [
-      {:membrane_core, "~> 0.10.0"},
+      {:membrane_core, "~> 0.11.0"},
+      {:membrane_h265_format, "~> 0.1.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false}
@@ -58,7 +59,7 @@ defmodule Membrane.Template.Mixfile do
 
   defp package do
     [
-      maintainers: ["Membrane Team"],
+      maintainers: [],
       licenses: ["Apache-2.0"],
       links: %{
         "GitHub" => @github_url,
@@ -73,7 +74,7 @@ defmodule Membrane.Template.Mixfile do
       extras: ["README.md", "LICENSE"],
       formatters: ["html"],
       source_ref: "v#{@version}",
-      nest_modules_by_prefix: [Membrane.Template]
+      nest_modules_by_prefix: [Membrane.H265.FFmpeg]
     ]
   end
 end
