@@ -1,4 +1,4 @@
-defmodule Membrane.Template.Mixfile do
+defmodule Membrane.H265.FFmpeg.Plugin.Mixfile do
   use Mix.Project
 
   @version "0.1.0"
@@ -44,7 +44,9 @@ defmodule Membrane.Template.Mixfile do
       {:membrane_raw_video_format, "~> 0.3.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
-      {:credo, ">= 0.0.0", only: :dev, runtime: false}
+      {:credo, ">= 0.0.0", only: :dev, runtime: false},
+      {:membrane_h265_plugin, "~> 0.1", only: :test},
+      {:membrane_file_plugin, "~> 0.13.0", only: :test}
     ]
   end
 
