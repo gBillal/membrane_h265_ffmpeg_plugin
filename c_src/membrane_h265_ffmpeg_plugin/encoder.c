@@ -75,7 +75,7 @@ UNIFEX_TERM create(UnifexEnv *env, int width, int height, char *pix_fmt,
         state->codec_ctx->profile = FF_PROFILE_HEVC_MAIN;
     } else if (strcmp("main_10", profile) == 0) {
         state->codec_ctx->profile = FF_PROFILE_HEVC_MAIN_10;
-    } else if (strcmp("main_10", profile) == 0) {
+    } else if (strcmp("main_still_picture", profile) == 0) {
         state->codec_ctx->profile = FF_PROFILE_HEVC_MAIN_STILL_PICTURE;
     } else {
         state->codec_ctx->profile = FF_PROFILE_HEVC_REXT;
