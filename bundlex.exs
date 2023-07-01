@@ -14,6 +14,12 @@ defmodule Membrane.H265.FFmpeg.BundlexProject do
         sources: ["decoder.c"],
         pkg_configs: ["libavcodec", "libavutil"],
         preprocessor: Unifex
+      ],
+      encoder: [
+        interface: :nif,
+        sources: ["encoder.c"],
+        pkg_configs: ["libavcodec", "libavutil"],
+        preprocessor: Unifex
       ]
     ]
   end
