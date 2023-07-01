@@ -55,11 +55,28 @@ defmodule Decoding.Pipeline do
       |> child(:decoder, H265.FFmpeg.Decoder)
       |> child(:sink,  %Membrane.File.Sink{location: "output.raw"})
 
-    {[spec: structure], %{}}
+    {[spec: structure, playback: :playing], %{}}
   end
 end
 ```
 
 ### Encoder
 
-Coming Soon
+The following pipeline takes 720p raw video file as input and encodes it as H265.
+
+```elixir
+defmodule Encoding.Pipeline do
+  use Membrane.Pipeline
+
+  @impl true
+  def handle_init(_) do
+    structure =
+      child(:source, %Membrane.File.Source{chunk_size: 40_960, location: "input.raw"})
+      |> child(:parser, %Membrane.RawVideo.Parser{width: 1280, height: 720, pixel_format: :I420})
+      |> child(:encoder, %Membrane.H265.FFmpeg.Encoder{preset: :fast, crf: 30})
+      |> child(:sink, %Membrane.File.Sink{location: "output.h265"})
+
+    {[spec: structure, playback: :playing], %{}}
+  end
+end
+```
