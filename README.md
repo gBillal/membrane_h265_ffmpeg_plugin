@@ -12,7 +12,7 @@ Documentation is available at [HexDocs](https://hexdocs.pm/membrane_h265_ffmpeg_
 Add the following line to your `deps` in `mix.exs`. Run `mix deps.get`.
 
 ```elixir
-{:membrane_h265_ffmpeg_plugin, "~> 0.1.0"}
+{:membrane_h265_ffmpeg_plugin, "~> 0.2.0"}
 ```
 
 You also need to have [ffmpeg](https://www.ffmpeg.org) libraries installed in your system.
@@ -55,7 +55,7 @@ defmodule Decoding.Pipeline do
       |> child(:decoder, H265.FFmpeg.Decoder)
       |> child(:sink,  %Membrane.File.Sink{location: "output.raw"})
 
-    {[spec: structure, playback: :playing], %{}}
+    {[spec: structure], %{}}
   end
 end
 ```
@@ -76,7 +76,7 @@ defmodule Encoding.Pipeline do
       |> child(:encoder, %Membrane.H265.FFmpeg.Encoder{preset: :fast, crf: 30})
       |> child(:sink, %Membrane.File.Sink{location: "output.h265"})
 
-    {[spec: structure, playback: :playing], %{}}
+    {[spec: structure], %{}}
   end
 end
 ```
