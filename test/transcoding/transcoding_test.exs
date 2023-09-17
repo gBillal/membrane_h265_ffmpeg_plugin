@@ -5,6 +5,7 @@ defmodule TranscodingTest do
   use Membrane.Pipeline
 
   import Membrane.Testing.Assertions
+
   alias Membrane.H265
   alias Membrane.Testing.Pipeline
 
@@ -12,7 +13,7 @@ defmodule TranscodingTest do
     Pipeline.start_link_supervised!(
       structure: [
         child(:file_src, %Membrane.File.Source{chunk_size: 40_960, location: in_path})
-        |> child(:parser, %H265.Parser{framerate: {1, 30}})
+        |> child(:parser, H265.Parser)
         |> child(:decoder, H265.FFmpeg.Decoder)
         |> child(:encoder, %H265.FFmpeg.Encoder{preset: :fast, crf: 30})
         |> child(:sink, %Membrane.File.Sink{location: out_path})
@@ -27,6 +28,8 @@ defmodule TranscodingTest do
     pid = make_pipeline(in_path, out_path)
     assert_pipeline_play(pid)
     assert_end_of_stream(pid, :sink, :input, timeout)
+
+    Pipeline.terminate(pid)
   end
 
   describe "TranscodingPipeline should" do

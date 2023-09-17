@@ -32,6 +32,8 @@ defmodule EncoderTest do
     pid = make_pipeline(in_path, out_path, width, height, format)
     assert_pipeline_play(pid)
     assert_end_of_stream(pid, :sink, :input, 4000)
+
+    Pipeline.terminate(pid)
   end
 
   describe "EncodingPipeline should" do
