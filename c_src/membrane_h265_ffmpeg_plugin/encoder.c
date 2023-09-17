@@ -10,7 +10,7 @@ void handle_destroy_state(UnifexEnv *env, State *state) {
 
 UNIFEX_TERM create(UnifexEnv *env, int width, int height, char *pix_fmt,
                    char *preset, char *tune, char *profile, int max_b_frames, int gop_size,
-                   int framerate_num, int framerate_denom, int crf) {
+                   int framerate_num, int framerate_denom, int crf, char* x265_params) {
   UNIFEX_TERM res;
   AVDictionary *params = NULL;
   State *state = unifex_alloc_state(env);
@@ -68,7 +68,13 @@ UNIFEX_TERM create(UnifexEnv *env, int width, int height, char *pix_fmt,
   }
 
   av_dict_set(&params, "preset", preset, 0);
-  av_dict_set(&params, "x265-params", "log-level=none", 0);
+
+  char* x265_p = malloc(strlen(x265_params) + 16);
+
+  strcpy(x265_p, x265_params);
+  strcat(x265_p, strcmp(x265_p, "") == 0 ? "log-level=none" : ":log-level=none");
+
+  av_dict_set(&params, "x265-params", x265_p, 0);
 
   if (strcmp("nil", profile) != 0) {
     if (strcmp("main", profile) == 0) {

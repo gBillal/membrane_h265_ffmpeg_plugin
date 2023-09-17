@@ -13,7 +13,8 @@ spec create(
        gop_size :: int,
        framerate_num :: int,
        framerate_denom :: int,
-       crf :: int
+       crf :: int,
+       x265_params :: string
      ) :: {:ok :: label, state} | {:error :: label, reason :: atom}
 
 spec encode(payload, pts :: int64, use_shm :: bool, state) ::

@@ -37,6 +37,8 @@ defmodule DecoderTest do
     assert_pipeline_play(pid)
     assert_end_of_stream(pid, :sink, :input, timeout)
     assert_files_equal(out_path, ref_path)
+
+    Pipeline.terminate(pid)
   end
 
   describe "DecodingPipeline should" do

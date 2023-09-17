@@ -103,6 +103,14 @@ defmodule Membrane.H265.FFmpeg.Encoder do
                 spec: non_neg_integer() | nil,
                 description: "Number of frames in a group of pictures.",
                 default: nil
+              ],
+              x265_params: [
+                spec: binary(),
+                default: "",
+                description: """
+                Set x265 options using a list of key=value couples separated by ":".
+                See `x265 --help` for a list of options.
+                """
               ]
 
   @impl true
@@ -133,7 +141,13 @@ defmodule Membrane.H265.FFmpeg.Encoder do
 
   @impl true
   def handle_stream_format(:input, stream_format, _ctx, state) do
-    {framerate_num, framerate_denom} = stream_format.framerate
+    {timebase_num, timebase_den} =
+      case stream_format.framerate do
+        nil -> {1, 30}
+        {0, _framerate_den} -> {1, 30}
+        {framerate_num, framerate_den} -> {framerate_den, framerate_num}
+        frames_per_second when is_integer(frames_per_second) -> {1, frames_per_second}
+      end
 
     with buffers <- flush_encoder_if_exists(state),
          {:ok, new_encoder_ref} <-
@@ -146,9 +160,10 @@ defmodule Membrane.H265.FFmpeg.Encoder do
              state.profile,
              state.max_b_frames || -1,
              state.gop_size || -1,
-             framerate_num,
-             framerate_denom,
-             state.crf
+             timebase_num,
+             timebase_den,
+             state.crf,
+             state.x265_params
            ) do
       stream_format = create_new_stream_format(stream_format, state)
       actions = buffers ++ [stream_format: stream_format]
