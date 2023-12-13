@@ -12,24 +12,25 @@ Documentation is available at [HexDocs](https://hexdocs.pm/membrane_h265_ffmpeg_
 Add the following line to your `deps` in `mix.exs`. Run `mix deps.get`.
 
 ```elixir
-{:membrane_h265_ffmpeg_plugin, "~> 0.3.0"}
+{:membrane_h265_ffmpeg_plugin, "~> 0.3.1"}
 ```
 
-You also need to have [ffmpeg](https://www.ffmpeg.org) libraries installed in your system.
+This package depends on the [ffmpeg](https://www.ffmpeg.org) libraries. The precompiled builds will be pulled and linked automatically. However, should there be any problems, consider installing it manually.
 
-### Ubuntu
+### Manual instalation of dependencies
+#### Ubuntu
 
 ```bash
 sudo apt-get install libavcodec-dev libavformat-dev libavutil-dev
 ```
 
-### Arch/Manjaro
+#### Arch/Manjaro
 
 ```bash
 pacman -S ffmpeg
 ```
 
-### MacOS
+#### MacOS
 
 ```bash
 brew install ffmpeg
