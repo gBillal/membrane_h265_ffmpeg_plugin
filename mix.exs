@@ -1,7 +1,7 @@
 defmodule Membrane.H265.FFmpeg.Plugin.Mixfile do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.3.1"
   @github_url "https://github.com/gBillal/membrane_h265_ffmpeg_plugin"
 
   def project do
@@ -38,6 +38,7 @@ defmodule Membrane.H265.FFmpeg.Plugin.Mixfile do
   defp deps do
     [
       {:bunch, "~> 1.6"},
+      {:bundlex, "~> 1.2.0"},
       {:unifex, "~> 1.1"},
       {:membrane_core, "~> 0.12.0"},
       {:membrane_h265_format, "~> 0.2.0"},
