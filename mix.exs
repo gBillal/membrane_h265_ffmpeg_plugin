@@ -38,7 +38,7 @@ defmodule Membrane.H265.FFmpeg.Plugin.Mixfile do
   defp deps do
     [
       {:bunch, "~> 1.6"},
-      {:bundlex, "~> 1.4"},
+      {:bundlex, "~> 1.2.0"},
       {:unifex, "~> 1.1"},
       {:membrane_core, "~> 0.12.0"},
       {:membrane_h265_format, "~> 0.2.0"},
