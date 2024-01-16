@@ -1,6 +1,6 @@
 defmodule Membrane.H265.FFmpeg.Common do
   @moduledoc false
-  use Ratio
+  use Numbers, overload_operators: true
 
   @h265_time_base 90_000
   @no_pts -9_223_372_036_854_775_808
