@@ -16,7 +16,7 @@ defmodule DecoderTest do
 
   defp make_pipeline(in_path, out_path) do
     Pipeline.start_link_supervised!(
-      structure:
+      spec:
         child(:file_src, %Membrane.File.Source{chunk_size: 40_960, location: in_path})
         |> child(:parser, H265.Parser)
         |> child(:decoder, H265.FFmpeg.Decoder)
@@ -34,7 +34,6 @@ defmodule DecoderTest do
     {in_path, ref_path, out_path} = prepare_paths(filename, tmp_dir)
 
     pid = make_pipeline(in_path, out_path)
-    assert_pipeline_play(pid)
     assert_end_of_stream(pid, :sink, :input, timeout)
     assert_files_equal(out_path, ref_path)
 
