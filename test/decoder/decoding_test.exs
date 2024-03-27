@@ -43,23 +43,23 @@ defmodule DecoderTest do
   describe "DecodingPipeline should" do
     @describetag :tmp_dir
     test "decode 60 480p frames", ctx do
-      perform_decoding_test("60-480p", ctx.tmp_dir, 500)
+      perform_decoding_test("60-480p", ctx.tmp_dir, 1000)
     end
 
     test "decode 10 320p frames with main still picture profile", ctx do
-      perform_decoding_test("10-320p-mainstillpicture", ctx.tmp_dir, 1000)
+      perform_decoding_test("10-320p-mainstillpicture", ctx.tmp_dir, 3000)
     end
 
     test "decode 15 720p frames with high temporal sub-layer id", ctx do
-      perform_decoding_test("15-720p-temporal-id-1", ctx.tmp_dir, 1000)
+      perform_decoding_test("15-720p-temporal-id-1", ctx.tmp_dir, 3000)
     end
 
     test "decode 30 720p frames with rext profile", ctx do
-      perform_decoding_test("30-720p-rext", ctx.tmp_dir, 2000)
+      perform_decoding_test("30-720p-rext", ctx.tmp_dir, 3000)
     end
 
     test "decode 30 480p frames with no b-frames", ctx do
-      perform_decoding_test("30-480p-no-bframes", ctx.tmp_dir, 1000)
+      perform_decoding_test("30-480p-no-bframes", ctx.tmp_dir, 3000)
     end
   end
 end

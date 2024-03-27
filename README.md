@@ -12,7 +12,7 @@ Documentation is available at [HexDocs](https://hexdocs.pm/membrane_h265_ffmpeg_
 Add the following line to your `deps` in `mix.exs`. Run `mix deps.get`.
 
 ```elixir
-{:membrane_h265_ffmpeg_plugin, "~> 0.4.0"}
+{:membrane_h265_ffmpeg_plugin, "~> 0.4.1"}
 ```
 
 This package depends on the [ffmpeg](https://www.ffmpeg.org) libraries. The precompiled builds will be pulled and linked automatically. However, should there be any problems, consider installing it manually.
