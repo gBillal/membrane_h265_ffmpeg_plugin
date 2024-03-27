@@ -35,11 +35,11 @@ defmodule TranscodingTest do
     @describetag :tmp_dir
 
     test "transcode 15 720p frames", ctx do
-      perform_test("15-720p-temporal-id-1", ctx.tmp_dir, 2000)
+      perform_test("15-720p-temporal-id-1", ctx.tmp_dir, 5000)
     end
 
     test "transcode 60 480p frames", ctx do
-      perform_test("60-480p", ctx.tmp_dir, 2000)
+      perform_test("60-480p", ctx.tmp_dir, 5000)
     end
   end
 end
